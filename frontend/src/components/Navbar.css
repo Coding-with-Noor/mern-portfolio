@@ -1,0 +1,129 @@
+/* Core Navbar Styles */
+.navbar {
+  background-color: #111111;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid #222;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+.navbar-logo {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo-dot {
+  color: #0070f3; /* Accent color: professional blue */
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 80px;
+}
+
+.nav-links {
+  color: #aaaaaa;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1.5rem;
+  height: 100%;
+  transition: color 0.3s ease;
+}
+
+.nav-links:hover {
+  color: #ffffff;
+}
+
+/* Style for the currently active page link */
+.active-link {
+  color: #0070f3 !important;
+  font-weight: 600;
+}
+
+/* Mobile Responsive Menu Icon */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Tablet & Mobile Screens Media Query */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: #111111;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  /* Hamburger to 'X' animation morph */
+  .menu-icon.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-icon.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-icon.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}

@@ -1,0 +1,109 @@
+.projects-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.projects-header {
+  margin-bottom: 3rem;
+}
+
+.projects-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.projects-subtitle {
+  color: #888888;
+  font-size: 1.1rem;
+}
+
+/* Projects Layout Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: #111111;
+  border: 1px solid #222222;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: #0070f3;
+}
+
+.project-title-card {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.project-desc {
+  color: #aaaaaa;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Badge Layouts */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  background-color: #222222;
+  color: #0070f3;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+/* Github Action Button */
+.github-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #333333;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.github-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* Informational Application States */
+.loading-state, .error-state, .no-projects {
+  text-align: center;
+  padding: 5rem 24px;
+  color: #aaaaaa;
+  font-size: 1.2rem;
+}
+
+.error-state {
+  color: #ff4a4a;
+}
