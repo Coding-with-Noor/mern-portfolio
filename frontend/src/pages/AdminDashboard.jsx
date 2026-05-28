@@ -66,7 +66,6 @@ const AdminDashboard = () => {
 
     const submissionData = { ...projectForm, techStack: formattedTechStack };
 
-    // Determine url route and standard HTTP method dynamically
     const url = editingProjectId 
       ? `http://localhost:5000/api/projects/${editingProjectId}`
       : 'http://localhost:5000/api/projects';
@@ -85,27 +84,24 @@ const AdminDashboard = () => {
 
       setFormStatus({ loading: false, success: true, error: null });
       setProjectForm({ title: '', description: '', techStack: '', githubLink: '' });
-      setEditingProjectId(null); // Reset back to creation mode
-      fetchProjects(); // Reload the project table grid updates
+      setEditingProjectId(null);
+      fetchProjects();
     } catch (err) {
       setFormStatus({ loading: false, success: false, error: err.message });
     }
   };
 
-  // POPULATE FORM FIELDS FOR EDITING
   const handleEditClick = (project) => {
     setEditingProjectId(project._id);
     setProjectForm({
       title: project.title,
       description: project.description,
-      techStack: project.techStack.join(', '), // Re-join array to editable string format
+      techStack: project.techStack.join(', '), 
       githubLink: project.githubLink
     });
-    // Scroll window up smoothly to form view location
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // DELETE BUTTON HANDLER
   const handleDeleteClick = async (projectId) => {
     if (!window.confirm("Are you absolutely sure you want to delete this project permanently from MongoDB?")) return;
 
@@ -116,10 +112,8 @@ const AdminDashboard = () => {
 
       if (!response.ok) throw new Error('Failed to delete item');
       
-      // Filter out deleted item immediately from UI view array
       setProjects(projects.filter(p => p._id !== projectId));
       
-      // If the project currently being edited is deleted, cancel editing mode
       if (editingProjectId === projectId) {
         setEditingProjectId(null);
         setProjectForm({ title: '', description: '', techStack: '', githubLink: '' });
@@ -142,7 +136,7 @@ const AdminDashboard = () => {
       </header>
 
       <div className="admin-grid">
-        {/* LEFT COLUMN: ADAPTIVE FORM */}
+        {/* LEFT COLUMN: ADAPTIVE FORM & LIVE PORTFOLIO CARDS */}
         <section className="admin-panel-card">
           <h2>{editingProjectId ? "Modify Active Project" : "Upload New Project"}</h2>
           <form onSubmit={handleFormSubmit} className="admin-form">
@@ -161,7 +155,7 @@ const AdminDashboard = () => {
 
             <div className="admin-field">
               <label>Tech Stack * (Separate with commas)</label>
-              <input type="text" name="techStack" value={projectForm.techStack} onChange={handleFormChange} required />
+              <input type="text" name="techStack" value={projectForm.techStack} onChange={handleFormChange} required placeholder="e.g., React, Node.js, MongoDB" />
             </div>
 
             <div className="admin-field">
@@ -181,16 +175,24 @@ const AdminDashboard = () => {
             </div>
           </form>
 
-          {/* PROJECT LISTING SUB-PANEL (CRUD ACTIONS LIST) */}
+          {/* UPGRADED LIVE PORTFOLIO CARD INVENTORY CONTAINER */}
           <div className="admin-projects-list-section">
             <h3 className="sub-section-title">Live Portfolio Inventory</h3>
-            {loadingProjects ? <p>Reading systems data...</p> : projects.length === 0 ? <p>No items published yet.</p> : (
+            {loadingProjects ? (
+              <p className="inbox-info">Reading systems data...</p>
+            ) : projects.length === 0 ? (
+              <p className="inbox-info">No items published yet.</p>
+            ) : (
               <div className="admin-inventory-list">
                 {projects.map(proj => (
                   <div key={proj._id} className="inventory-item-row">
-                    <div>
-                      <h4>{proj.title}</h4>
-                      <p className="inventory-meta">{proj.techStack.join(' • ')}</p>
+                    <div className="inventory-card-info">
+                      <h4 className="inventory-card-title">{proj.title}</h4>
+                      <div className="inventory-tech-badges">
+                        {proj.techStack.map((tech, i) => (
+                          <span key={i} className="tech-tag-badge">{tech}</span>
+                        ))}
+                      </div>
                     </div>
                     <div className="inventory-actions">
                       <button className="btn-edit" onClick={() => handleEditClick(proj)}>Edit</button>
@@ -207,7 +209,6 @@ const AdminDashboard = () => {
         <section className="admin-panel-card">
           <h2>Inbox Submissions ({messages.length})</h2>
           
-          {/* EMBEDDED INTEGRATED INBOX CARD LIST */}
           <div className="inbox-list">
             {loadingMessages ? (
               <p className="inbox-info">Loading connection items...</p>
