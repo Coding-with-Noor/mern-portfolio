@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // Import our new Navbar component
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Divider from './components/Divider';
 
 // Import our custom pages
 import AboutPage from './pages/AboutPage';
@@ -18,15 +19,16 @@ function App() {
         <Navbar />
 
         <main style={{ flex: '1 0 auto' }}>
-        {/* Route Definitions */}
-        <Routes>
-          <Route path="/" element={<AboutPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Routes>
+          {/* Route Definitions */}
+          <Routes>
+            <Route path="/" element={<AboutPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Routes>
         </main>
 
+        <Divider />
         <Footer />
       </div>
     </Router>

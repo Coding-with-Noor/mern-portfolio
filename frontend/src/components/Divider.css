@@ -1,0 +1,47 @@
+.premium-divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto;
+  position: relative;
+  padding: 0 24px;
+}
+
+/* The fading horizontal line structure */
+.premium-divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 112, 243, 0.4) 50%, 
+    transparent 100%
+  );
+}
+
+/* The central glowing diamond pulse node */
+.premium-divider-node {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #0070f3 0%, #00dfd8 100%);
+  transform: rotate(45deg);
+  margin: 0 20px;
+  border-radius: 2px;
+  box-shadow: 0 0 15px 3px rgba(0, 223, 216, 0.6), 
+              0 0 30px 6px rgba(0, 112, 243, 0.3);
+  position: relative;
+}
+
+/* Subtle outer ambient glow circle behind the node */
+.premium-divider-node::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(0, 223, 216, 0.2) 0%, transparent 70%);
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
