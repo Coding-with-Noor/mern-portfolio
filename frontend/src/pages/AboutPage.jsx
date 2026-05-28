@@ -1,5 +1,6 @@
 import React from 'react';
 import './AboutPage.css';
+import Divider from '../components/Divider';
 
 const AboutPage = () => {
   // Array mapping our tools to official Devicon class names for SVGs
@@ -39,6 +40,9 @@ const AboutPage = () => {
           technical concepts quickly and applying them to interactive frontend interfaces and data classifiers.
         </p>
       </section>
+
+      {/* STANDALONE SEPARATOR: Placed perfectly between Hero and Skills */}
+      <Divider />
 
       {/* INFINITE MOVING SKILLS MARQUEE LINE */}
       <section className="marquee-section">

@@ -206,6 +206,8 @@ const AdminDashboard = () => {
         {/* RIGHT COLUMN: INBOX SUBMISSIONS */}
         <section className="admin-panel-card">
           <h2>Inbox Submissions ({messages.length})</h2>
+          
+          {/* EMBEDDED INTEGRATED INBOX CARD LIST */}
           <div className="inbox-list">
             {loadingMessages ? (
               <p className="inbox-info">Loading connection items...</p>
@@ -218,7 +220,7 @@ const AdminDashboard = () => {
                     <h3>{msg.subject || 'General Inquiry'}</h3>
                     <span className="inbox-date">{new Date(msg.createdAt).toLocaleDateString()}</span>
                   </div>
-                  <p className="inbox-meta">From: <strong>{msg.name}</strong> ({msg.email})</p>
+                  <p className="inbox-meta">From: <strong>{msg.name}</strong> &middot; {msg.email}</p>
                   <p className="inbox-body-text">{msg.message}</p>
                 </div>
               ))
