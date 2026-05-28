@@ -33,48 +33,89 @@ const ContactPage = () => {
 
   return (
     <div className="contact-page-container">
+      
+      {/* HEADER BLOCK */}
+      <header className="contact-header-centered">
+        <span className="contact-tag">Secure Correspondence</span>
+        <h1 className="contact-title-main">Let's Build Something Exceptional.</h1>
+        <p className="contact-subtitle-main">Reach out directly or utilize the database logging terminal below.</p>
+      </header>
+
       <div className="contact-split-grid">
         
-        {/* LEFT COLUMN: MINIMALIST PROFESSIONAL FOCUS */}
-        <div className="contact-info-panel">
-          <span className="contact-tag">Professional Correspondence</span>
-          <h1 className="contact-title">Let's connect regarding technical opportunities.</h1>
-          <p className="contact-desc">
-            I am currently seeking software engineering internships and entry-level full-stack roles. 
-            If you are looking to collaborate on robust web applications, discuss structural backend logic, 
-            or review my academic projects, please submit your inquiry through this secure portal. 
-            I typically review submissions within 24 business hours.
-          </p>
+        {/* LEFT COLUMN: INTERACTIVE PROFESSIONAL CARDS */}
+        <div className="contact-cards-panel">
+          
+          <a href="mailto:your-email@example.com" className="interactive-contact-card email-card">
+            <div className="card-accent-edge"></div>
+            <div className="contact-icon-box">
+              <span className="icon-graphic">✉</span>
+            </div>
+            <div className="contact-card-text">
+              <h3>Direct Email</h3>
+              <p>your-email@example.com</p>
+              <span className="action-hint">Send Instant Ping →</span>
+            </div>
+          </a>
+
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="interactive-contact-card linkedin-card">
+            <div className="card-accent-edge"></div>
+            <div className="contact-icon-box">
+              <span className="icon-graphic">in</span>
+            </div>
+            <div className="contact-card-text">
+              <h3>Professional Network</h3>
+              <p>linkedin.com/in/yourprofile</p>
+              <span className="action-hint">View Connection →</span>
+            </div>
+          </a>
+
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="interactive-contact-card github-card">
+            <div className="card-accent-edge"></div>
+            <div className="contact-icon-box">
+              <span className="icon-graphic">⚡</span>
+            </div>
+            <div className="contact-card-text">
+              <h3>Source Engineering</h3>
+              <p>github.com/yourusername</p>
+              <span className="action-hint">Review Repositories →</span>
+            </div>
+          </a>
+
         </div>
 
-        {/* RIGHT COLUMN: FORM CONTAINER */}
+        {/* RIGHT COLUMN: HIGH-END TERMINAL FORM */}
         <div className="contact-form-wrapper">
+          <div className="form-glow-aurora"></div>
+          
           <form className="contact-form" onSubmit={handleSubmit}>
-            {status.success && <div className="alert alert-success">✓ Message securely logged into the database!</div>}
-            {status.error && <div className="alert alert-error">✗ Database connection error: {status.error}</div>}
+            {status.success && <div className="alert alert-success">✓ Message logged securely to cluster database.</div>}
+            {status.error && <div className="alert alert-error">✗ Node Server Linkage Error: {status.error}</div>}
 
-            <div className="form-group">
-              <label>Full Name *</label>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="e.g., Noor" required />
+            <div className="form-row-split">
+              <div className="form-group">
+                <label>Identify Yourself</label>
+                <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required />
+              </div>
+
+              <div className="form-group">
+                <label>Return Link Address</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="name@domain.com" required />
+              </div>
             </div>
 
             <div className="form-group">
-              <label>Email Address *</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="name@example.com" required />
+              <label>Objective Scope</label>
+              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="e.g., Project Integration Proposals" required />
             </div>
 
             <div className="form-group">
-              <label>Subject *</label>
-              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="e.g., Project Collaboration / Interview Schedule" required />
-            </div>
-
-            <div className="form-group">
-              <label>Your Message *</label>
-              <textarea name="message" rows="5" value={formData.message} onChange={handleChange} placeholder="Provide comprehensive details regarding your inquiry..." required></textarea>
+              <label>Message Content payload</label>
+              <textarea name="message" rows="4" value={formData.message} onChange={handleChange} placeholder="Type your core transmission details here..." required></textarea>
             </div>
 
             <button type="submit" className="submit-btn" disabled={status.loading}>
-              {status.loading ? 'Transmitting Data...' : 'Submit Message'}
+              <span>{status.loading ? 'Transmitting Over Network...' : 'Execute Transmission'}</span>
             </button>
           </form>
         </div>

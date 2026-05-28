@@ -1,12 +1,15 @@
 .about-page-container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 24px;
+  padding: 6rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden; /* Prevent marquee bleed */
 }
 
+/* Hero UI Core Styles */
 .hero-section {
-  margin-bottom: 3rem;
+  max-width: 850px;
+  margin-bottom: 5rem;
 }
 
 .about-tag {
@@ -30,6 +33,7 @@
 .highlight {
   background: var(--accent-gradient);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -47,121 +51,227 @@
   color: var(--text-muted);
 }
 
-.divider {
-  border: 0;
-  height: 1px;
-  background: var(--border-color);
-  margin: 3.5rem 0;
+/* Centered Header Section */
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.section-title {
-  font-size: 1.75rem;
+.skills-tag {
+  color: var(--accent-primary);
+  font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.marquee-section-title {
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.5px;
 }
 
-/* Professional Experience Card Layout styles */
-.experience-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-left: 4px solid var(--accent-primary);
-  border-radius: 12px;
-  padding: 2.25rem;
+/* --- INFINITE MARQUEE SLIDER ARCHITECTURE --- */
+.marquee-wrapper {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  margin-bottom: 6rem;
 }
 
-.exp-header {
+/* Gradient fade masks on left and right sides for absolute premium feel */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-main, #0a0a0a) 0%, transparent 100%);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg-main, #0a0a0a) 0%, transparent 100%);
+}
+
+/* Single long horizontal container track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 25s linear infinite;
+}
+
+/* The standalone item card wrapper */
+.marquee-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.25rem 2.25rem;
+  margin: 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-width: 130px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.marquee-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Adjust sizes for Devicon raw font-icons */
+.icon-wrapper i {
+  font-size: 2.5rem;
+}
+
+/* Utility to ensure raw white themes pop correctly */
+.icon-wrapper i.white {
+  color: #ffffff;
+}
+
+.marquee-card-name {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+}
+
+/* Keyframe for endless linear looping execution */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- PREMIUM INTERNSHIP HIGHLIGHT BANNER --- */
+.internship-highlight-panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 3rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
+}
+
+.highlight-content {
+  flex: 1;
+}
+
+.live-indicator-box {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.exp-role {
-  color: #ffffff;
-  font-size: 1.25rem;
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ffa3;
+  border-radius: 50%;
+  animation: pulse-animation 2s infinite;
+}
+
+.indicator-text {
+  color: #00ffa3;
+  font-size: 0.8rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.exp-company {
-  color: var(--accent-primary);
-  font-size: 0.95rem;
-  font-weight: 500;
-  margin-top: 0.25rem;
+.highlight-content h2 {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
 }
 
-.exp-date {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-}
-
-.exp-desc {
+.highlight-content p {
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
 
-/* Three-Column Skill Layout Grid */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.skill-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-}
-
-.category-title {
-  font-size: 1.15rem;
+.highlight-content p strong {
   color: #ffffff;
-  margin-bottom: 1.25rem;
-  font-weight: 600;
 }
 
-.skill-list {
+.highlight-badge {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.skill-item {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  display: flex;
   align-items: center;
-  list-style: none;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  border-radius: 16px;
+  min-width: 160px;
+  text-align: center;
 }
 
-.skill-dot {
-  color: var(--accent-primary);
-  margin-right: 10px;
-  font-size: 0.65rem;
+.mern-text {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #3fa037, #61dafb, #4e8cbb, #222);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intern-tag {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 163, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 255, 163, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 163, 0); }
+}
+
+@media (max-width: 900px) {
+  .internship-highlight-panel {
+    flex-direction: column;
+    padding: 2.5rem;
+    gap: 2rem;
+  }
+  .highlight-badge {
+    width: 100%;
+    min-width: unset;
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .hero-title {
-    font-size: 2.75rem;
-  }
-  .exp-header {
-    flex-direction: column;
-  }
+  .hero-title { font-size: 2.75rem; }
+  .about-page-container { padding: 3rem 24px; }
 }

@@ -1,109 +1,195 @@
 .projects-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 24px;
+  padding: 6rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Premium Header Elements */
 .projects-header {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  position: relative;
 }
 
 .projects-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -1px;
+}
+
+/* Subtle underlying cyan-blue glow text accent */
+.projects-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  border-radius: 2px;
+  margin-top: 1rem;
 }
 
 .projects-subtitle {
-  color: #888888;
-  font-size: 1.1rem;
+  color: #8a8f98;
+  font-size: 1.15rem;
+  font-weight: 400;
 }
 
-/* Projects Layout Grid */
+/* Responsive Structural Card Layout Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
+/* THE PREMIUM GRADIENT-BORDER CARD (PERMANENTLY AESTHETIC) */
 .project-card {
-  background-color: #111111;
-  border: 1px solid #222222;
-  border-radius: 12px;
-  padding: 2rem;
+  background: linear-gradient(145deg, rgba(10, 17, 32, 0.85) 0%, rgba(3, 7, 18, 0.95) 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 280px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  min-height: 320px;
+  position: relative;
+  
+  /* Creates the permanent, ultra-sharp side-by-side gradient border */
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: 
+    linear-gradient(rgba(10, 17, 32, 0.85), rgba(3, 7, 18, 0.95)), 
+    linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #00dfd8 100%); /* Royal Blue to Electric Teal spectrum */
+
+  /* Permanent subtle drop shadow glow beneath the card */
+  box-shadow: 0 10px 40px -10px rgba(0, 82, 212, 0.25);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* PERMANENT SIDE-BY-SIDE CORNER GLOWS (No hover required) */
+/* Top-Left: Deep Sapphire Royal Blue Ambient Aura */
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 82, 212, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* Bottom-Right: Electric Teal/Cyan Side Accent Aura */
+.project-card::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 223, 216, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* HOVER EFFECT: Keeps the permanent elements but amplifies the depth */
 .project-card:hover {
-  transform: translateY(-4px);
-  border-color: #0070f3;
+  transform: translateY(-6px);
+  /* Intensifies the royal blue backing shadow when the user interacts */
+  box-shadow: 0 20px 40px -5px rgba(0, 82, 212, 0.4), 
+              0 0 15px 0px rgba(0, 223, 216, 0.15);
 }
 
 .project-title-card {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  letter-spacing: -0.3px;
+  z-index: 2; /* Layered safely above background glow elements */
 }
 
 .project-desc {
-  color: #aaaaaa;
+  color: #94a3b8;
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   flex-grow: 1;
+  z-index: 2;
 }
 
-/* Badge Layouts */
+/* Premium Luminous Technology Badges */
 .tech-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  z-index: 2;
 }
 
 .tech-badge {
-  background-color: #222222;
-  color: #0070f3;
-  font-size: 0.85rem;
+  background: rgba(0, 112, 243, 0.08);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
-/* Github Action Button */
+.project-card:hover .tech-badge {
+  background: rgba(0, 223, 216, 0.12);
+  color: #00dfd8;
+  border-color: rgba(0, 223, 216, 0.4);
+}
+
+/* Futuristic Github Action Button */
 .github-btn {
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
-  background-color: transparent;
-  border: 1px solid #333333;
-  padding: 0.75rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 500;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
   text-align: center;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
 }
 
 .github-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
+  background: linear-gradient(90deg, #0070f3, #00dfd8);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(0, 112, 243, 0.4);
 }
 
 /* Informational Application States */
 .loading-state, .error-state, .no-projects {
   text-align: center;
-  padding: 5rem 24px;
-  color: #aaaaaa;
-  font-size: 1.2rem;
+  padding: 8rem 24px;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .error-state {
-  color: #ff4a4a;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.05);
+  border: 1px dashed rgba(248, 113, 113, 0.2);
+  border-radius: 12px;
+  margin: 4rem auto;
+  max-width: 600px;
 }

@@ -2,10 +2,31 @@ import React from 'react';
 import './AboutPage.css';
 
 const AboutPage = () => {
+  // Array mapping our tools to official Devicon class names for SVGs
+  const skillLogos = [
+    { name: "Python", iconClass: "devicon-python-plain colored" },
+    { name: "Machine Learning", iconClass: "devicon-scikit-learn-plain colored" },
+    { name: "MongoDB", iconClass: "devicon-mongodb-plain colored" },
+    { name: "Express.js", iconClass: "devicon-express-original white" },
+    { name: "React.js", iconClass: "devicon-react-original colored" },
+    { name: "Node.js", iconClass: "devicon-nodejs-plain colored" },
+    { name: "HTML5", iconClass: "devicon-html5-plain colored" },
+    { name: "CSS3", iconClass: "devicon-css3-plain colored" },
+    { name: "JavaScript", iconClass: "devicon-javascript-plain colored" },
+    { name: "Bootstrap", iconClass: "devicon-bootstrap-plain colored" },
+    { name: "SQL", iconClass: "devicon-azuresqldatabase-plain colored" },
+    { name: "Mobile Development", iconClass: "devicon-android-plain colored" },
+    { name: "Canva UI", iconClass: "devicon-canva-original colored" },
+    { name: "Git & GitHub", iconClass: "devicon-github-original white" }
+  ];
+
+  // Double the array to make the infinite scrolling infinite & seamless
+  const marqueeItems = [...skillLogos, ...skillLogos];
+
   return (
     <div className="about-page-container">
       
-      {/* HERO HEADER */}
+      {/* HERO SECTION */}
       <section className="hero-section">
         <span className="about-tag">Software Engineer-in-Training</span>
         <h1 className="hero-title">
@@ -19,47 +40,46 @@ const AboutPage = () => {
         </p>
       </section>
 
-      <hr className="divider" />
+      {/* INFINITE MOVING SKILLS MARQUEE LINE */}
+      <section className="marquee-section">
+        <div className="section-header-centered">
+          <span className="skills-tag">Core Stack Automation</span>
+          <h2 className="marquee-section-title">Skills</h2>
+        </div>
 
-     
-      {/* CORE SKILL STACK ARCHITECTURE */}
-      <section className="skills-section">
-        <h2 className="section-title">Technical Competencies</h2>
-        <div className="skills-grid">
-          
-          {/* CATEGORY 1: FRONTEND WEB */}
-          <div className="skill-card">
-            <h3 className="category-title">Core Web & UI Design</h3>
-            <ul className="skill-list">
-              <li className="skill-item"><span className="skill-dot">■</span> HTML5 & CSS3 Architecture</li>
-              <li className="skill-item"><span className="skill-dot">■</span> JavaScript (ES6+ Logic)</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Bootstrap Responsive Grid</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Canva UI/UX Asset Wireframing</li>
-            </ul>
+        <div className="marquee-wrapper">
+          <div className="marquee-track">
+            {marqueeItems.map((skill, index) => (
+              <div className="marquee-card" key={index}>
+                <div className="icon-wrapper">
+                  <i className={skill.iconClass}></i>
+                </div>
+                <span className="marquee-card-name">{skill.name}</span>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* CATEGORY 2: THE MERN ECOSYSTEM */}
-          <div className="skill-card">
-            <h3 className="category-title">MERN Stack & Databases</h3>
-            <ul className="skill-list">
-              <li className="skill-item"><span className="skill-dot">■</span> React.js Component State</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Node.js / Express Servers</li>
-              <li className="skill-item"><span className="skill-dot">■</span> MongoDB NoSQL Modeling</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Relational SQL Database Logic</li>
-            </ul>
+      {/* PREMIUM INTERNSHIP HIGHLIGHT BANNER */}
+      <section className="internship-section">
+        <div className="internship-highlight-panel">
+          <div className="highlight-content">
+            <div className="live-indicator-box">
+              <span className="pulse-dot"></span>
+              <span className="indicator-text">Active Professional Engagement</span>
+            </div>
+            <h2>Currently Immersed in Full-Stack Development</h2>
+            <p>
+              I am actively undergoing an intensive engineering internship focused on <strong>MERN Stack Architecture</strong>. 
+              This engagement involves scaling backend route infrastructure, handling complex schema integrations within MongoDB, 
+              and learning how to bridge enterprise-level data layers with responsive, dynamic React components.
+            </p>
           </div>
-
-          {/* CATEGORY 3: ADVANCED APPLIED SCIENCE */}
-          <div className="skill-card">
-            <h3 className="category-title">Applied AI & Development</h3>
-            <ul className="skill-list">
-              <li className="skill-item"><span className="skill-dot">■</span> Mobile App Development Basics</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Python Engineering</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Machine Learning Pipelines</li>
-              <li className="skill-item"><span className="skill-dot">■</span> Git & GitHub Version Control</li>
-            </ul>
+          <div className="highlight-badge">
+            <span className="mern-text">MERN</span>
+            <span className="intern-tag">Internship '26</span>
           </div>
-
         </div>
       </section>
 
