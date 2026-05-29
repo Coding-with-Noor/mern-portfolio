@@ -1,12 +1,12 @@
 .admin-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 24px;
+  padding: 2rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
 .admin-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid #222;
   padding-bottom: 1.5rem;
 }
@@ -25,7 +25,7 @@
 .admin-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: start;
 }
 
@@ -139,7 +139,7 @@
 .inbox-info {
   text-align: center;
   color: #666666;
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 
 /* Alert Notification Status Banners */

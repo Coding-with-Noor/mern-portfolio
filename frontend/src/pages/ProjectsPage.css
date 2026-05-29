@@ -1,13 +1,13 @@
 .projects-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 24px;
+  padding: 2rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
 /* Premium Header Elements */
 .projects-header {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
@@ -40,19 +40,23 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
+  /* Aligns cards to the top of their grid row so short cards don't stretch vertically */
+  align-items: start; 
 }
 
 /* THE PREMIUM GRADIENT-BORDER CARD (PERMANENTLY AESTHETIC) */
 .project-card {
   background: linear-gradient(145deg, rgba(10, 17, 32, 0.85) 0%, rgba(3, 7, 18, 0.95) 100%);
   border-radius: 16px;
-  padding: 2.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 320px;
+  /* Changed from space-between to start so items stack tightly right after each other */
+  justify-content: flex-start; 
+  /* Removed min-height: 320px to let text naturally define the box boundary */
   position: relative;
+  overflow: hidden; /* Ensures ambient background glows stay masked safely inside */
   
   /* Creates the permanent, ultra-sharp side-by-side gradient border */
   border: 1px solid transparent;
@@ -118,8 +122,8 @@
   color: #94a3b8;
   font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 1.75rem;
-  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  /* Removed flex-grow: 1 so it doesn't push elements downwards */
   z-index: 2;
 }
 
@@ -128,7 +132,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   z-index: 2;
 }
 
@@ -167,6 +171,7 @@
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   transition: all 0.3s ease;
+  margin-top: auto; /* Keeps the button cleanly at the bottom of its layout space if margins shift */
 }
 
 .github-btn:hover {

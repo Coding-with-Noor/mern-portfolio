@@ -1,7 +1,7 @@
 .about-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 24px;
+  padding: 2rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
   overflow-x: hidden; /* Prevent marquee bleed */
 }
@@ -76,7 +76,7 @@
   .hero-split-layout {
     flex-direction: column-reverse; /* Puts image safely on top when layout breaks */
     text-align: center;
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
   
   .hero-image-wrapper {
@@ -126,7 +126,7 @@
 /* Centered Header Section */
 .section-header-centered {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .skills-tag {
@@ -156,7 +156,7 @@
   margin-right: -50vw;
   overflow: hidden;
   padding: 1.5rem 0;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
 }
 
 /* Gradient fade masks on left and right sides for absolute premium feel */
@@ -245,7 +245,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .highlight-content {

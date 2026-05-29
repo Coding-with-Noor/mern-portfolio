@@ -3,7 +3,6 @@ import './AboutPage.css';
 import Divider from '../components/Divider';
 
 const AboutPage = () => {
-  // Array mapping our tools to official Devicon class names for SVGs
   const skillLogos = [
     { name: "Python", iconClass: "devicon-python-plain colored" },
     { name: "Machine Learning", iconClass: "devicon-scikit-learn-plain colored" },
@@ -33,9 +32,9 @@ const AboutPage = () => {
           {/* LEFT SIDE: TEXT CONTENT */}
           <div className="hero-text-content">
             <h1 className="hero-title">
-              Hi, I'm <span className="highlight">Noor</span>
+              Hi, I'm <span className="highlight">Mah noor</span>
             </h1>
-            <p className="hero-subtitle">BS Computer Science Student — 6th Semester</p>
+            <p className="hero-subtitle">Doing Bachelor in Computer Science </p>
             <p className="hero-bio">
               I am an adaptable Computer Science student focused on building cross-platform software solutions, 
               managing database systems, and implementing data science workflows. I specialize in picking up 
@@ -48,7 +47,7 @@ const AboutPage = () => {
             <div className="hero-image-wrapper">
               <img 
                 src="/image.jpeg" 
-                alt="Noor" 
+                alt="image" 
                 className="hero-profile-pic"
               />
             </div>

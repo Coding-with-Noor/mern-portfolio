@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="portfolio-footer">
       <div className="footer-container">
-        <p className="footer-text">© {new Date().getFullYear()} Noor.Dev. All rights reserved.</p>
+        <p className="footer-text">© {new Date().getFullYear()} Portfolio.Dev. All rights reserved.</p>
         
         <div className="footer-socials">
           {/* GitHub */}

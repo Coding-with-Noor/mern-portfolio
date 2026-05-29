@@ -1,14 +1,14 @@
 .contact-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 24px;
+  padding: 2rem 24px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
 /* Centered Header Styles */
 .contact-header-centered {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .contact-title-main {
@@ -41,7 +41,7 @@
   max-width: 650px; /* Perfectly sized for a single column look */
   background: linear-gradient(145deg, rgba(10, 17, 32, 0.85) 0%, rgba(3, 7, 18, 0.95) 100%);
   border-radius: 16px;
-  padding: 3.5rem;
+  padding: 2rem;
   position: relative;
   
   /* Permanent Side-by-side gradient border configuration */
