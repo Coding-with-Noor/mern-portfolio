@@ -9,7 +9,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Pointing directly to your local Express API route
+        // Pointing directly to local Express API route
         const response = await fetch('http://localhost:5000/api/projects');
         
         if (!response.ok) {

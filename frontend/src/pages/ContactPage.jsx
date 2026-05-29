@@ -55,7 +55,6 @@ const ContactPage = () => {
             {status.success && <div className="alert alert-success">✓ Message logged securely to the database.</div>}
             {status.error && <div className="alert alert-error">✗ Server Error: {status.error}</div>}
 
-            {/* SEPARATED TWO-FIELD NAME ROW */}
             <div className="form-row-split">
               <div className="form-group">
                 <label>First Name</label>
@@ -82,7 +81,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* REWRITTEN WORK EMAIL FIELD */}
+            {/* WORK EMAIL FIELD */}
             <div className="form-group">
               <label>Work Email</label>
               <input 
@@ -107,7 +106,7 @@ const ContactPage = () => {
               />
             </div>
 
-            {/* REWRITTEN MESSAGE FIELD */}
+            {/* MESSAGE FIELD */}
             <div className="form-group">
               <label>Message</label>
               <textarea 
@@ -120,7 +119,7 @@ const ContactPage = () => {
               ></textarea>
             </div>
 
-            {/* REWRITTEN SUBMIT ACTION */}
+            {/* SUBMIT ACTION */}
             <button type="submit" className="submit-btn" disabled={status.loading}>
               {status.loading ? 'Sending...' : 'Send Message'}
             </button>

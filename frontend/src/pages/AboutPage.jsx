@@ -29,19 +29,35 @@ const AboutPage = () => {
       
       {/* HERO SECTION */}
       <section className="hero-section">
-        <span className="about-tag">Software Engineer-in-Training</span>
-        <h1 className="hero-title">
-          Hi, I'm <span className="highlight">Noor</span>
-        </h1>
-        <p className="hero-subtitle">BS Computer Science Student — 6th Semester</p>
-        <p className="hero-bio">
-          I am an adaptable Computer Science student focused on building cross-platform software solutions, 
-          managing database systems, and implementing data science workflows. I specialize in picking up 
-          technical concepts quickly and applying them to interactive frontend interfaces and data classifiers.
-        </p>
+        <div className="hero-split-layout">
+          {/* LEFT SIDE: TEXT CONTENT */}
+          <div className="hero-text-content">
+            <h1 className="hero-title">
+              Hi, I'm <span className="highlight">Noor</span>
+            </h1>
+            <p className="hero-subtitle">BS Computer Science Student — 6th Semester</p>
+            <p className="hero-bio">
+              I am an adaptable Computer Science student focused on building cross-platform software solutions, 
+              managing database systems, and implementing data science workflows. I specialize in picking up 
+              technical concepts quickly and applying them to interactive frontend interfaces and data classifiers.
+            </p>
+          </div>
+
+          {/* RIGHT SIDE: ANIMATED ROUND PICTURE */}
+          <div className="hero-image-container">
+            <div className="hero-image-wrapper">
+              <img 
+                src="/image.jpeg" 
+                alt="Noor" 
+                className="hero-profile-pic"
+              />
+            </div>
+          </div>
+
+        </div>
       </section>
 
-      {/* STANDALONE SEPARATOR: Placed perfectly between Hero and Skills */}
+      {/* STANDALONE SEPARATOR */}
       <Divider />
 
       {/* INFINITE MOVING SKILLS MARQUEE LINE */}
@@ -65,7 +81,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* PREMIUM INTERNSHIP HIGHLIGHT BANNER */}
+      {/* INTERNSHIP HIGHLIGHT BANNER */}
       <section className="internship-section">
         <div className="internship-highlight-panel">
           <div className="highlight-content">

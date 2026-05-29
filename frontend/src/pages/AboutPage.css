@@ -12,6 +12,78 @@
   margin-bottom: 5rem;
 }
 
+/* Split Layout for Hero section */
+.hero-split-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  width: 100%;
+}
+
+.hero-text-content {
+  flex: 1.2;
+}
+
+/* Image Column Placement Container */
+.hero-image-container {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rounded, Glowing Image Inner Frame with floating animation */
+.hero-image-wrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  padding: 5px; /* Creates space for the glowing border track */
+  background: linear-gradient(135deg, #0070f3 0%, #00dfd8 100%);
+  box-shadow: 0 10px 30px rgba(0, 112, 243, 0.25);
+  animation: floatAvatar 6s ease-in-out infinite;
+}
+
+/* The picture itself cropped perfectly round */
+.hero-profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #0a0a0a; /* Matches your background color to make the ring pop */
+  display: block;
+}
+
+/* Smooth Floating Animation Loop */
+@keyframes floatAvatar {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 10px 30px rgba(0, 112, 243, 0.25);
+  }
+  50% {
+    transform: translateY(-12px);
+    box-shadow: 0 22px 40px rgba(0, 223, 216, 0.4);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 10px 30px rgba(0, 112, 243, 0.25);
+  }
+}
+
+/* Responsive adjustment for small laptop screens and mobile viewports */
+@media (max-width: 900px) {
+  .hero-split-layout {
+    flex-direction: column-reverse; /* Puts image safely on top when layout breaks */
+    text-align: center;
+    gap: 2.5rem;
+  }
+  
+  .hero-image-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+}
 .about-tag {
   color: var(--accent-primary);
   font-size: 0.85rem;
