@@ -36,16 +36,20 @@ A modern and responsive personal portfolio website built using the MERN Stack (M
 
 # **Install Frontend Dependencies
 cd frontend
+
 npm install
 
 # **Install Backend Dependencies
 cd ../backend
+
 npm install
 
 # **Environment Variables
 
 Create a .env file inside the backend directory and add:
+
 PORT=5000
+
 MONGODB_URI=your_mongodb_connection_string
 
 # **Running the Application
@@ -53,11 +57,13 @@ MONGODB_URI=your_mongodb_connection_string
 **Start Backend
 
 cd backend
+
 npm run dev
 
 **Start Frontend
 
 cd frontend
+
 npm start
 
 # **Future Improvements
