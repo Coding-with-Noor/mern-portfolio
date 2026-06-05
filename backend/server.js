@@ -1,32 +1,40 @@
+// 1. Load environment variables FIRST before any configurations read them
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
-const connectDB = require('./config/db.js'); // 1. Import the database configuration
+const connectDB = require('./config/db.js'); 
 
+// 2. Initialize the Express application instance
 const app = express();
 
-// 2. Connect to the Database
+// 3. Connect to MongoDB Atlas using the loaded URI string
 connectDB();
 
-// Middleware
-app.use(cors());
-app.use(express.json()); // Allows your server to accept JSON data in requests
+// 4. Secure CORS Configuration Middleware
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', 
+  credentials: true
+}));
 
-// 1. IMPORT ROUTES
+// 5. Global Parsers
+app.use(express.json()); 
+
+// 6. Import Routes
 const projectRoutes = require('./routes/projectRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 
-// 2. LINK ROUTES TO URL PATHS
+// 7. Link Routes to URL Paths
 app.use('/api/projects', projectRoutes);
 app.use('/api/messages', messageRoutes);
 
-// Test Route to make sure the backend works
+// Base Deployment Smoke Test Route
 app.get('/', (req, res) => {
     res.send('Server is up and running smoothly!');
 });
 
+// 8. Bind Server Port Execution
 const PORT = process.env.PORT || 5000;
-// Start the Server
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
 });

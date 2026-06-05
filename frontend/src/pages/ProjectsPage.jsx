@@ -9,8 +9,11 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Pointing directly to local Express API route
-        const response = await fetch('http://localhost:5000/api/projects');
+        // DYNAMIC URL FIX: Fallback to localhost if the environment variable doesn't exist yet
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        
+        //  Updated the fetch endpoint using template literals
+        const response = await fetch(`${API_BASE_URL}/api/projects`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch projects from server');
@@ -27,14 +30,14 @@ const ProjectsPage = () => {
     };
 
     fetchProjects();
-  }, []); // Empty array means this runs exactly once when the page loads
+  }, []); 
 
   if (loading) {
     return <div className="loading-state">Fetching amazing things from the database...</div>;
   }
 
   if (error) {
-    return <div className="error-state">Oops! {error}. Make sure your backend server is running on port 5000!</div>;
+    return <div className="error-state">Oops! {error}. Connection failed.</div>;
   }
 
   return (
@@ -53,7 +56,6 @@ const ProjectsPage = () => {
               <h2 className="project-title-card">{project.title}</h2>
               <p className="project-desc">{project.description}</p>
               
-              {/* Tech Stack Badge List */}
               <div className="tech-badges">
                 {project.techStack.map((tech, idx) => (
                   <span key={idx} className="tech-badge">{tech}</span>

@@ -19,10 +19,13 @@ const AdminDashboard = () => {
 
     const [formStatus, setFormStatus] = useState({ loading: false, success: false, error: null });
 
+    // DYNAMIC BASE URL: Uses the live environment variable if deployed, otherwise falls back to local setup
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     // Fetch data engines
     const fetchMessages = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/messages');
+            const response = await fetch(`${API_BASE_URL}/api/messages`);
             if (!response.ok) throw new Error('Could not fetch messages');
             const data = await response.json();
             setMessages(data);
@@ -34,7 +37,7 @@ const AdminDashboard = () => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/projects');
+            const response = await fetch(`${API_BASE_URL}/api/projects`);
             if (!response.ok) throw new Error('Could not fetch projects');
             const data = await response.json();
             setProjects(data);
@@ -66,10 +69,10 @@ const AdminDashboard = () => {
 
         const submissionData = { ...projectForm, techStack: formattedTechStack };
 
-        // Determine url route and standard HTTP method dynamically
+        // Determine url route dynamically
         const url = editingProjectId
-            ? `http://localhost:5000/api/projects/${editingProjectId}`
-            : 'http://localhost:5000/api/projects';
+            ? `${API_BASE_URL}/api/projects/${editingProjectId}`
+            : `${API_BASE_URL}/api/projects`;
 
         const method = editingProjectId ? 'PUT' : 'POST';
 
@@ -98,10 +101,9 @@ const AdminDashboard = () => {
         setProjectForm({
             title: project.title,
             description: project.description,
-            techStack: project.techStack.join(', '), // Re-join array to editable string format
+            techStack: project.techStack.join(', '), 
             githubLink: project.githubLink
         });
-        // Scroll window up smoothly to form view location
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -110,16 +112,14 @@ const AdminDashboard = () => {
         if (!window.confirm("Are you absolutely sure you want to delete this project permanently from MongoDB?")) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/projects/${projectId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/projects/${projectId}`, {
                 method: 'DELETE'
             });
 
             if (!response.ok) throw new Error('Failed to delete item');
 
-            // Filter out deleted item immediately from UI view array
             setProjects(projects.filter(p => p._id !== projectId));
 
-            // If the project currently being edited is deleted, cancel editing mode
             if (editingProjectId === projectId) {
                 setEditingProjectId(null);
                 setProjectForm({ title: '', description: '', techStack: '', githubLink: '' });
