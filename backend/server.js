@@ -19,6 +19,7 @@ app.use(cors({
 
 // 5. Global Parsers
 app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); // Handles URL-encoded form submissions safely
 
 // 6. Import Routes
 const projectRoutes = require('./routes/projectRoutes');
@@ -30,11 +31,32 @@ app.use('/api/messages', messageRoutes);
 
 // Base Deployment Smoke Test Route
 app.get('/', (req, res) => {
-    res.send('Server is up and running smoothly!');
+    res.status(200).json({ status: "success", message: 'Server is up and running smoothly!' });
 });
 
-// 8. Bind Server Port Execution
+// 8. Global Error Handling Middleware (Catches unhandled errors in async route handlers)
+app.use((err, req, res, next) => {
+    console.error(`[Error]: ${err.stack}`);
+    res.status(err.status || 500).json({
+        status: "error",
+        message: err.message || "Internal Server Error"
+    });
+});
+
+// 9. Handle 404 - Route Not Found (Catch-all for invalid URLs)
+app.use((req, res) => {
+    res.status(404).json({ status: "error", message: "Route not found" });
+});
+
+// 10. Bind Server Port Execution
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
+});
+
+// 11. Graceful Shutdown & Unhandled Rejection Safety Nets
+process.on('unhandledRejection', (err) => {
+    console.error(`Unhandled Rejection Error: ${err.message}`);
+    // Close server & exit process
+    server.close(() => process.exit(1));
 });
